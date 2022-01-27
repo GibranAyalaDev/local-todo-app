@@ -14,7 +14,7 @@ const getAll = (req, res) => {
       res.status(500).send({
         status: false,
         msg: "Error: " + err,
-        doc: null 
+        doc: null
       })
     } else {
       res.status(200).send({
@@ -29,7 +29,7 @@ const getAll = (req, res) => {
 const getOneID = (req, res) => {
   const id = req.params.id
 
-  Secret.findOne({_id: id}, (err, doc) => {
+  Secret.findOne({ _id: id }, (err, doc) => {
     if (err) {
       res.status(500).send({
         status: false,
@@ -60,12 +60,31 @@ const create = (req, res) => {
     } else {
       res.status(200).send({
         status: true,
-        msg:"Succeed",
+        msg: "Succeed",
         doc: { content, note }
       })
     }
   })
 }
 
+const del = (req, res) => {
+  const id = req.body.id
+  Secret.deleteOne({ _id: id }, (err, docs) => {
 
-module.exports = { home, getAll, getOneID, create }
+    if (err) {
+      res.status(500).send({
+        status: false,
+        msg: "Error deleting note: " + err,
+        doc: null
+      })
+    } else {
+      res.status(200).send({
+        status: true,
+        msg: "Succeed",
+        doc: docs,
+      })
+    }
+  })
+}
+
+module.exports = { home, getAll, getOneID, create, del }
