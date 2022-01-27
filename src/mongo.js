@@ -5,4 +5,11 @@ const connect = (url) => {
   mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 }
 
-module.exports = { connect }
+const Todo = mongoose.model("Todo", {
+  name: String,
+  description: String,
+  creation_date: Date,
+  due_date: Date,
+})
+
+module.exports = { connect , Todo }
