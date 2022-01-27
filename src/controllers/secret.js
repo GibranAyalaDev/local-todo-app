@@ -87,4 +87,26 @@ const del = (req, res) => {
   })
 }
 
-module.exports = { home, getAll, getOneID, create, del }
+const edit = (req, res) => {
+  const id = req.params.id
+  const doc = req.body
+
+  Secret.updateOne({_id: id}, doc, (err, _) => {
+    if (err) {
+      res.status(500).send({
+        status: false,
+        msg: "Error editing document: " + err,
+        doc: null
+      })
+    } else {
+      res.status(200).send({
+        status: true,
+        msg: "Succeed",
+        doc: doc
+      })
+    }
+  })
+
+}
+
+module.exports = { home, getAll, getOneID, create, del, edit }
