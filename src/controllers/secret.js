@@ -106,7 +106,6 @@ const edit = (req, res) => {
       })
     }
   })
-
 }
 
 module.exports = { home, getAll, getOneID, create, del, edit }
