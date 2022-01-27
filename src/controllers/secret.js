@@ -46,4 +46,26 @@ const getOneID = (req, res) => {
   })
 }
 
-module.exports = { home, getAll, getOneID }
+const create = (req, res) => {
+  const content = req.body.content
+  const note = req.body.note
+
+  Secret.create({ content, note }, (err, docs) => {
+    if (err) {
+      res.status(500).send({
+        status: false,
+        msg: "Error: " + err,
+        doc: null
+      })
+    } else {
+      res.status(200).send({
+        status: true,
+        msg:"Succeed",
+        doc: { content, note }
+      })
+    }
+  })
+}
+
+
+module.exports = { home, getAll, getOneID, create }
