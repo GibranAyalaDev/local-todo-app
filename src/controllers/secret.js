@@ -26,4 +26,24 @@ const getAll = (req, res) => {
   })
 }
 
-module.exports = { home, getAll }
+const getOneID = (req, res) => {
+  const id = req.params.id
+
+  Secret.findOne({_id: id}, (err, doc) => {
+    if (err) {
+      res.status(500).send({
+        status: false,
+        msg: "Error: " + err,
+        doc: null
+      })
+    } else {
+      res.status(200).send({
+        status: true,
+        msg: "Succeed",
+        doc
+      })
+    }
+  })
+}
+
+module.exports = { home, getAll, getOneID }
