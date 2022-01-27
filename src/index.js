@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const { connect } = require('./mongo')
 
 // create the app
@@ -10,6 +11,8 @@ connect("mongodb://127.0.0.1:27017/todo-test")
 
 // middlewares
 app.use(morgan("dev"))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // routes
 app.use("/todo", require('./routes/todo'))

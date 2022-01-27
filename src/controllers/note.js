@@ -24,4 +24,17 @@ const getOneID = (req, res) => {
   })
 }
 
-module.exports = { home, getAll, getOneID }
+const create = (req, res) => {
+  const title = req.body.title
+  const note = req.body.note
+
+  Note.create({ title, note }, (err, docs) => {
+    if(err) {
+      res.status(500).send("Error: " + err)
+    } else {
+      res.status(200).send("Document created")
+    }
+  })
+}
+
+module.exports = { home, getAll, getOneID, create }
