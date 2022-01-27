@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/GibranAyalaDev/local-todo-app/issues"
   },
-  "homepage": "https://github.com/GibranAyalaDev/local-todo-app#readme"
+  "homepage": "https://github.com/GibranAyalaDev/local-todo-app#readme",
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
+  }
 }
