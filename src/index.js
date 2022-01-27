@@ -6,7 +6,7 @@ const { connect } = require('./mongo')
 const app = express()
 
 // connect to the database
-connect("mongodb://127.0.0.1:27017/todo")
+connect("mongodb://127.0.0.1:27017/todo-test")
 
 // middlewares
 app.use(morgan("dev"))
