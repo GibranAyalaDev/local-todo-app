@@ -49,4 +49,17 @@ const del = (req, res) => {
   })
 }
 
-module.exports = { home, getAll, getOneID, create, del }
+const edit = (req, res) => {
+  const id = req.params.id
+  const doc = req.body
+
+  Note.updateOne({_id: id}, doc, (err, _) => {
+    if (err) {
+      res.status(500).send("Error editing document: " + err)
+    } else {
+      res.status(200).send(doc)
+    }
+  })
+}
+
+module.exports = { home, getAll, getOneID, create, del, edit }
