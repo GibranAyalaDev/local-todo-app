@@ -12,4 +12,9 @@ const Todo = mongoose.model("Todo", {
   due_date: Date,
 })
 
-module.exports = { connect , Todo }
+const Secret = mongoose.model("Secret", {
+  note: String,
+  content: String,
+})
+
+module.exports = { connect, Todo, Secret }
