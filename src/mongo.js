@@ -17,9 +17,9 @@ const Secret = mongoose.model("Secret", {
   content: String,
 })
 
-const Notes = mongoose.model("Note", {
+const Note = mongoose.model("Note", {
   note: String,
   title: String
 })
 
-module.exports = { connect, Todo, Secret }
+module.exports = { connect, Todo, Secret, Note }
