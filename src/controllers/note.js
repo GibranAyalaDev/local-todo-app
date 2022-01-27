@@ -1,15 +1,27 @@
 const { Note } = require('../mongo')
 
 const home = (req, res) => {
-  res.status(200).send("Hello note")
+  res.status(200).send({
+    status: true,
+    msg: "Hello Not",
+    doc: null,
+  })
 }
 
 const getAll = (req, res) => {
   Note.find({}, (err, docs) => {
     if (err) {
-      res.status(500).send("Error: " + err)
+      res.status(500).send({
+        status: false,
+        msg:"Error: " + err,
+        doc: null,
+      })
     } else {
-      res.status(200).send(docs)
+      res.status(200).send({
+        status: true,
+        msg: "Succeed",
+        doc: docs
+      })
     }
   })
 }
@@ -17,9 +29,17 @@ const getAll = (req, res) => {
 const getOneID = (req, res) => {
   Note.findById(req.params.id, (err, docs) => {
     if (err) {
-      res.status(500).send("Error: " + err)
+      res.status(500).send({
+        status: false,
+        msg: "Error: " + err,
+        doc: null
+      })
     } else {
-      res.status(200).send(docs)
+      res.status(200).send({
+        status: true,
+        msg: "Succeed",
+        doc:docs
+      })
     }
   })
 }
@@ -30,9 +50,17 @@ const create = (req, res) => {
 
   Note.create({ title, note }, (err, docs) => {
     if (err) {
-      res.status(500).send("Error: " + err)
+      res.status(500).send({
+        status: false,
+        msg: "Error: " + err,
+        doc: null
+      })
     } else {
-      res.status(200).send("Document created")
+      res.status(200).send({
+        status: true,
+        msg:"Succeed",
+        doc: { title, note }
+      })
     }
   })
 }
@@ -40,11 +68,19 @@ const create = (req, res) => {
 const del = (req, res) => {
   const id = req.body.id
 
-  Note.deleteOne({_id:id}, (err, _) => {
+  Note.deleteOne({_id:id}, (err, docs) => {
     if (err) {
-      res.status(500).send("Error deleting note: " + err)
+      res.status(500).send({
+        status: false,
+        msg: "Error deleting note: " + err,
+        doc: null
+      })
     } else {
-      res.status(200).send("Document deleted")
+      res.status(200).send({
+        status: true,
+        msg:"Succeed",
+        doc: docs,
+      })
     }
   })
 }
@@ -55,9 +91,17 @@ const edit = (req, res) => {
 
   Note.updateOne({_id: id}, doc, (err, _) => {
     if (err) {
-      res.status(500).send("Error editing document: " + err)
+      res.status(500).send({
+        status: false,
+        msg: "Error editing document: " + err,
+        doc: null
+      })
     } else {
-      res.status(200).send(doc)
+      res.status(200).send({
+        status: true,
+        msg: "Succeed",
+        doc: doc
+      })
     }
   })
 }
