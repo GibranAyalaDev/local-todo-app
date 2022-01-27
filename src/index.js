@@ -9,7 +9,7 @@ app.use(morgan("dev"))
 
 // routes
 app.get("/", (req, res) => {
-  res.send("Hello World")
+  res.status(200).send("Hello World")
 })
 
 // Start the server
