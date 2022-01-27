@@ -6,15 +6,13 @@ const { connect } = require('./mongo')
 const app = express()
 
 // connect to the database
-connect("mongodb://localhost:27017/todo")
+connect("mongodb://127.0.0.1:27017/todo")
 
 // middlewares
 app.use(morgan("dev"))
 
 // routes
-app.get("/", (req, res) => {
-  res.status(200).send("Hello World")
-})
+app.use("/user", require('./routes/user.router'))
 
 // Start the server
 app.listen(8000, () => {
