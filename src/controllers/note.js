@@ -29,7 +29,7 @@ const create = (req, res) => {
   const note = req.body.note
 
   Note.create({ title, note }, (err, docs) => {
-    if(err) {
+    if (err) {
       res.status(500).send("Error: " + err)
     } else {
       res.status(200).send("Document created")
@@ -37,4 +37,16 @@ const create = (req, res) => {
   })
 }
 
-module.exports = { home, getAll, getOneID, create }
+const del = (req, res) => {
+  const id = req.body.id
+
+  Note.deleteOne({_id:id}, (err, _) => {
+    if (err) {
+      res.status(500).send("Error deleting note: " + err)
+    } else {
+      res.status(200).send("Document deleted")
+    }
+  })
+}
+
+module.exports = { home, getAll, getOneID, create, del }

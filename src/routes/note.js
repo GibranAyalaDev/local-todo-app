@@ -7,5 +7,6 @@ router.get("/", ctrl.home)
 router.get("/getall", ctrl.getAll)
 router.get("/getoneid/:id", ctrl.getOneID)
 router.post("/new", ctrl.create)
+router.post("/del", ctrl.del)
 
 module.exports = router
