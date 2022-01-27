@@ -1,8 +1,12 @@
 const express = require('express')
 const morgan = require('morgan')
+const { connect } = require('./mongo')
 
 // create the app
 const app = express()
+
+// connect to the database
+connect("mongodb://localhost:27017/todo")
 
 // middlewares
 app.use(morgan("dev"))
